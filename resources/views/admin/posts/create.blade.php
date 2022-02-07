@@ -61,6 +61,20 @@
       </select>
     </div>
 
+    <div class="mb-3">
+      Seleziona i tag del post
+      @foreach ($tags as $tag)
+        <div>
+          <input type="checkbox" name="tags[]" value="{{$tag->id}}" id="tag{{$tag->id}}"
+          @if (in_array($tag->id, old('tags', [])))
+            checked
+          @endif>
+          <label style="cursor: pointer" 
+          for="tag{{$tag->id}}">{{$tag->name}}</label>
+        </div>
+      @endforeach
+    </div>
+
     <button type="submit" class="btn btn-primary">Invia</button>
     <button type="reset" class="btn btn-secondary">Reset</button>
 
