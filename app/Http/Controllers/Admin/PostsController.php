@@ -60,6 +60,10 @@ class PostsController extends Controller
         $newPost->slug = Post::generateUniqueSlug($newPost->title);
         $newPost->save();
 
+        if(array_key_exists('tags', $data)){
+          $newPost->tags()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', $newPost)->with('success', 'Nuovo post creato correttamente');
     }
 
